@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install",
+  "devCommand": "pnpm dev",
+  "regions": ["bom1"],
+  "headers": [
+    {
+      "source": "/llms.txt",
+      "headers": [{ "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }]
+    },
+    {
+      "source": "/.well-known/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }]
+    }
+  ]
+}
