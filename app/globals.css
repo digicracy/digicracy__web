@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────────────────────────────
+   DIGICRACY — Brand Tokens
+   Source: /Users/pankils-mba/Downloads/digicracy/06-brand-and-homepage-spec.md
+   Three colours only. No fourth colour. No gradients.
+   Two fonts only. JetBrains Mono + Source Serif 4.
+   ──────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+  /* Brand palette — exactly three */
+  --color-ink: #152a3a;
+  --color-ochre: #b4843a;
+  --color-paper: #f4efe6;
+
+  /* Ink at opacity levels for muted text (no separate grey per spec) */
+  --color-ink-50: rgb(21 42 58 / 0.5);
+  --color-ink-70: rgb(21 42 58 / 0.7);
+
+  /* Fonts */
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radii — spec caps at 2px (prefer sharp) */
+  --radius-sm: 0;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+
+  /* Motion */
+  --animate-chain-build: chain-build 800ms ease-out forwards;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Base
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --ink: #152a3a;
+  --ochre: #b4843a;
+  --paper: #f4efe6;
+
+  color-scheme: light only;
+}
+
+html {
+  background-color: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-variant-ligatures: common-ligatures;
+}
+
+/* Headings, labels, data — JetBrains Mono */
+h1, h2, h3, h4, h5, h6,
+.font-mono,
+.ds-label,
+.ds-data,
+.ds-cta {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  line-height: 1.25;
+}
+
+/* Running prose — Source Serif 4 */
+p, li, blockquote, .font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Max line length for running prose ~70ch per spec */
+.prose-digicracy {
+  max-width: 70ch;
+  line-height: 1.6;
+}
+
+/* Links — ink by default; ochre underline on hover in 150ms */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+a.ds-link {
+  color: var(--ochre);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+
+a.ds-link:hover,
+a.ds-link:focus-visible {
+  text-decoration-color: var(--ochre);
+}
+
+/* Form controls — sharp corners, 1px ink border, no shadow */
+input, textarea, select, button {
+  font: inherit;
+  border-radius: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+textarea {
+  background-color: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 0.625rem 0.75rem;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--ochre);
+}
+
+/* Cursor affordances */
+:is(button, a, select, summary, [role="button"], [type="submit"], [type="reset"], label[for], input[type="checkbox"], input[type="radio"]) {
+  cursor: pointer;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--ochre);
+  color: var(--paper);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Utility classes (Digicracy-specific)
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Small-caps label — JetBrains Mono bold, tracked, all caps */
+.ds-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.6875rem; /* ~11px */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ds-label--ink { color: var(--ink); }
+.ds-label--ochre { color: var(--ochre); }
+
+/* Metadata line — JetBrains Mono regular ochre */
+.ds-meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ochre);
+}
+
+/* Section rule — 1px ink */
+.ds-rule {
+  border-top: 1px solid var(--ink);
+}
+
+.ds-rule--ochre {
+  border-top: 1px solid var(--ochre);
+}
+
+/* Stamp rectangle — ochre-outlined, 2px stroke, no fill, no radius */
+.ds-stamp {
+  border: 2px solid var(--ochre);
+  padding: 0.625rem 0.875rem;
+  display: inline-block;
+  border-radius: 0;
+}
+
+/* Solid ochre button — paper text */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ochre);
+  color: var(--paper);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--ochre);
+  border-radius: 0;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.ds-btn:hover,
+.ds-btn:focus-visible {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* Footer band — ochre background, paper text */
+.ds-footer-band {
+  background-color: var(--ochre);
+  color: var(--paper);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Chain motif — the signature visual
+   Rules per spec §3 (Chain motif)
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Solid ink circle = working node */
+.chain-node {
+  display: inline-block;
+  border-radius: 9999px; /* only exception to "sharp corners" — nodes are circles */
+  background-color: var(--ink);
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+
+/* Hollow ochre circle = broken node */
+.chain-node--broken {
+  background-color: var(--paper);
+  border-color: var(--ochre);
+}
+
+/* Solid ink line between working nodes */
+.chain-link {
+  flex: 1 1 auto;
+  border-top: 1.5px solid var(--ink);
+  min-width: 1rem;
+}
+
+/* Dashed ochre line between broken/uncertain nodes */
+.chain-link--broken {
+  border-top: 1.5px dashed var(--ochre);
+  border-image-slice: 1;
+}
+
+/* Animation: build left-to-right on load (hero chain only) */
+@keyframes chain-build {
+  from {
+    opacity: 0;
+    transform: scaleX(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.chain-animate > * {
+  animation: chain-build 400ms ease-out both;
+}
+.chain-animate > *:nth-child(1) { animation-delay: 0ms; }
+.chain-animate > *:nth-child(2) { animation-delay: 100ms; }
+.chain-animate > *:nth-child(3) { animation-delay: 200ms; }
+.chain-animate > *:nth-child(4) { animation-delay: 300ms; }
+.chain-animate > *:nth-child(5) { animation-delay: 400ms; }
+.chain-animate > *:nth-child(6) { animation-delay: 500ms; }
+.chain-animate > *:nth-child(7) { animation-delay: 600ms; }
+.chain-animate > *:nth-child(8) { animation-delay: 700ms; }
+.chain-animate > *:nth-child(9) { animation-delay: 800ms; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .chain-animate > * {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Tabular numbers for tracker matrix & filing numbers
+   ──────────────────────────────────────────────────────────────────────── */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
