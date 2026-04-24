@@ -67,10 +67,10 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-serif), Georgia, serif;
-  font-size: 17px;            /* bumped from 16 — publication comfort */
+  font-size: 17px;
   line-height: 1.65;
   font-variant-ligatures: common-ligatures;
-  /* Prevent tiny text from auto-shrinking on iOS in landscape */
+  /* Prevent iOS text-size auto-adjust in landscape */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -330,13 +330,3 @@ textarea:focus {
   font-variant-numeric: tabular-nums;
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Scroll islands — for wide matrices on narrow viewports
-   Gives the tracker table edge-to-edge scroll on mobile without pushing
-   document-level horizontal scroll.
-   ──────────────────────────────────────────────────────────────────────── */
-.scroll-island {
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-}

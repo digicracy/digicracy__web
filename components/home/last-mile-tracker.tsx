@@ -4,6 +4,7 @@ import {
   TRACKER,
   type CellStatus,
 } from "@/src/constants/tracker"
+import { MobileTracker } from "./mobile-tracker"
 
 const STATUS_GLYPH: Record<CellStatus, string> = {
   online: "●",
@@ -24,8 +25,11 @@ const STATUS_LABEL: Record<CellStatus, string> = {
 }
 
 /**
- * Last-Mile Tracker — services × states matrix.
- * Spec §5.
+ * Last-Mile Tracker — services × states.
+ * Spec §5 (desktop matrix) and §Responsive (mobile selector).
+ *
+ * md+:   semantic <table> matrix.
+ * < md:  <MobileTracker /> — state selector + single-state list.
  */
 export function LastMileTracker() {
   return (
@@ -43,12 +47,15 @@ export function LastMileTracker() {
           eight Indian states.
         </p>
 
-        {/* Matrix — bleeds edge-to-edge on mobile for scroll without pushing page scroll */}
-        <div className="scroll-island -mx-4 mt-6 px-4 sm:mx-0 sm:px-0">
-          <table className="w-full min-w-[560px] border-collapse font-mono text-sm">
+        {/* Desktop / tablet matrix */}
+        <div className="mt-6 hidden md:block">
+          <table className="w-full border-collapse font-mono text-sm">
             <thead>
               <tr className="border-y border-[var(--ink)]">
-                <th scope="col" className="py-3 text-left font-normal text-[var(--ink)]/70">
+                <th
+                  scope="col"
+                  className="py-3 text-left font-normal text-[var(--ink)]/70"
+                >
                   <span className="sr-only">Service</span>
                 </th>
                 {STATE_CODES.map((state) => (
@@ -94,6 +101,9 @@ export function LastMileTracker() {
           </table>
         </div>
 
+        {/* Mobile selector */}
+        <MobileTracker />
+
         {/* Legend */}
         <p className="mt-6 font-mono text-[13px] tracking-[0.04em] text-[var(--ink)]">
           <span className="text-[var(--ink)]">●</span> ONLINE
@@ -104,7 +114,10 @@ export function LastMileTracker() {
         </p>
 
         <div className="mt-6">
-          <Link href="/research/last-mile-tracker" className="ds-link inline-block py-1 font-mono text-[15px]">
+          <Link
+            href="/research/last-mile-tracker"
+            className="ds-link inline-block py-1 font-mono text-[15px]"
+          >
             Explore the full tracker →
           </Link>
         </div>
