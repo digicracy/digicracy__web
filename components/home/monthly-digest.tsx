@@ -18,14 +18,14 @@ export function MonthlyDigest() {
           <h2 id="digest-heading" className="ds-label ds-label--ink">
             Monthly Digest
           </h2>
-          <p className="mt-3 font-serif text-base italic text-[var(--ink)]">
+          <p className="mt-3 font-serif text-[17px] italic leading-[1.5] text-[var(--ink)]">
             One email a month. Research, investigations, and updates.
           </p>
 
           <form
             action="/api/subscribe"
             method="post"
-            className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:gap-0"
+            className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:gap-0"
           >
             <label htmlFor="digest-email" className="sr-only">
               Email address
@@ -37,9 +37,9 @@ export function MonthlyDigest() {
               autoComplete="email"
               required
               placeholder="your@email.address"
-              className="flex-1 border border-[var(--ink)] bg-transparent px-4 py-3 font-mono text-sm text-[var(--ink)] placeholder:text-[var(--ink)]/40 focus:border-[var(--ochre)] sm:border-r-0"
+              className="flex-1 border border-[var(--ink)] bg-transparent px-4 py-3 font-mono text-base text-[var(--ink)] placeholder:text-[var(--ink)]/40 focus:border-[var(--ochre)] sm:border-r-0"
             />
-            <button type="submit" className="ds-btn">
+            <button type="submit" className="ds-btn w-full sm:w-auto">
               Subscribe
             </button>
           </form>

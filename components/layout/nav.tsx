@@ -30,19 +30,19 @@ export function Nav() {
         </Link>
 
         <nav aria-label="Sections">
-          <ul className="flex flex-wrap items-center gap-x-1 gap-y-1 font-mono text-[11px] sm:text-xs">
+          <ul className="flex flex-wrap items-center gap-y-1 font-mono text-sm">
             {NAV_LINKS.map((link, i) => (
               <li key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="ds-link ds-link px-1 py-1 text-[var(--ink)] hover:text-[var(--ochre)]"
+                  className="inline-block px-2 py-2 text-[var(--ink)] hover:underline hover:decoration-[var(--ochre)] hover:underline-offset-4"
                 >
                   {link.label}
                 </Link>
                 {i < NAV_LINKS.length - 1 && (
                   <span
                     aria-hidden
-                    className="px-1 text-[var(--ink)] opacity-50"
+                    className="text-[var(--ink)] opacity-50"
                   >
                     ·
                   </span>

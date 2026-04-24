@@ -38,12 +38,12 @@ export function Footer() {
             >
               DIGICRACY<sup className="font-mono text-[0.55em] font-bold">™</sup>
             </Link>
-            <p className="mt-3 font-mono text-xs leading-relaxed text-[var(--paper)]">
+            <p className="mt-3 font-mono text-[13px] leading-relaxed text-[var(--paper)]">
               {site.location}
               <br />
               Founded {site.founded}
             </p>
-            <p className="mt-4 font-mono text-xs leading-relaxed text-[var(--paper)]">
+            <p className="mt-4 font-mono text-[13px] leading-relaxed text-[var(--paper)]">
               <a
                 href={`mailto:${site.email.general}`}
                 className="hover:underline underline-offset-4"
@@ -71,7 +71,7 @@ export function Footer() {
         </div>
 
         {/* Bottom strip */}
-        <div className="mt-12 border-t border-[var(--paper)]/25 pt-6 font-mono text-[11px] leading-relaxed text-[var(--paper)]">
+        <div className="mt-12 border-t border-[var(--paper)]/30 pt-6 font-mono text-[13px] leading-relaxed text-[var(--paper)]">
           © {site.founded} DIGICRACY<sup>™</sup> · Funded through individual donations from the founder and supporters.
         </div>
       </div>
@@ -88,10 +88,10 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-[var(--paper)]">
+      <h3 className="font-mono text-[13px] font-bold uppercase tracking-[0.12em] text-[var(--paper)]">
         {title}
       </h3>
-      <ul className="mt-3 space-y-2 font-mono text-xs">
+      <ul className="mt-3 space-y-2 font-mono text-[14px]">
         {items.map((item) =>
           item.external ? (
             <li key={item.href}>
@@ -99,7 +99,7 @@ function FooterColumn({
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--paper)] hover:underline underline-offset-4"
+                className="inline-block py-1 text-[var(--paper)] hover:underline underline-offset-4"
               >
                 {item.label}
               </a>
@@ -108,7 +108,7 @@ function FooterColumn({
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="text-[var(--paper)] hover:underline underline-offset-4"
+                className="inline-block py-1 text-[var(--paper)] hover:underline underline-offset-4"
               >
                 {item.label}
               </Link>

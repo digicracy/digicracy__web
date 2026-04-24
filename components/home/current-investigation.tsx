@@ -19,13 +19,13 @@ export function CurrentInvestigation() {
 
           <h2
             id="current-investigation-heading"
-            className="mt-3 font-serif text-2xl font-semibold leading-[1.25] text-[var(--ink)] sm:text-3xl lg:text-[2rem]"
+            className="balance mt-3 max-w-[22ch] font-serif text-2xl font-semibold leading-[1.2] text-[var(--ink)] sm:text-3xl lg:text-[2rem]"
           >
             Why Punjab commercial vehicle owners still pay late-tax penalty at
             a counter
           </h2>
 
-          <div className="prose-digicracy mt-5 space-y-4 text-base text-[var(--ink)] sm:text-[17px]">
+          <div className="prose-digicracy mt-5 space-y-4 text-[17px] leading-[1.65] text-[var(--ink)] sm:text-lg">
             <p>
               Punjab allows commercial vehicle owners to pay road tax online,
               but the penalty for late payment is still computed manually by a
@@ -60,11 +60,17 @@ export function CurrentInvestigation() {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-col gap-2 font-mono text-sm sm:flex-row sm:gap-6">
-            <Link href="/research/punjab-commercial-vehicle-penalty" className="ds-link">
+          <div className="mt-6 flex flex-col gap-3 font-mono text-[15px] sm:flex-row sm:gap-8">
+            <Link
+              href="/research/punjab-commercial-vehicle-penalty"
+              className="ds-link inline-block py-1"
+            >
               Read investigation →
             </Link>
-            <Link href="/filings?campaign=001" className="ds-link">
+            <Link
+              href="/filings?campaign=001"
+              className="ds-link inline-block py-1"
+            >
               View documents →
             </Link>
           </div>

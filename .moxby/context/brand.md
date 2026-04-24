@@ -12,10 +12,18 @@ Full spec: `/Users/pankils-mba/Downloads/digicracy/06-brand-and-homepage-spec.md
 | Role | Hex | Usage |
 |---|---|---|
 | Ink | `#152a3a` | Primary text, logo, structural elements, working-state nodes |
-| Ochre | `#b4843a` | Broken-state nodes, CTAs, underlines, labels, footer band |
+| Ochre (text) | `#8b5e1c` | CTAs, labels, underlines, metadata, footer band, OFFLINE labels |
+| Ochre (decorative) | `#b4843a` | Chain strokes, stamp borders, dashed lines (graphics-only) |
 | Paper | `#f4efe6` | Background throughout |
 
 Muted text = ink at 50% opacity. No separate grey.
+
+> **Accessibility deviation from original spec:** the spec locked ochre at `#b4843a`.
+> On paper that gives 2.91 WCAG contrast — fails AA (4.5) for body text and AA Large (3.0).
+> Because Digicracy is a publication-first NGO, we deepened the text-role ochre to `#8b5e1c`
+> (contrast 4.83 on paper, passes AA). The original `#b4843a` is retained as a "decorative
+> ochre" for chain strokes, dashed lines, and stamp borders — graphics where WCAG text rules
+> don't apply. The hue is unchanged; only lightness. Result: same visual identity, readable.
 
 ## Typography
 - **JetBrains Mono** (400, 700): logo, nav, headings, section labels, data, filing numbers, metadata, CTAs, footer, chain captions

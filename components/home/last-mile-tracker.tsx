@@ -38,12 +38,13 @@ export function LastMileTracker() {
           Last-Mile Tracker
         </h2>
 
-        <p className="mt-2 font-serif text-sm italic text-[var(--ink)]/70">
-          The last mile of building plan approval. A six-state review.
+        <p className="mt-2 max-w-[60ch] font-serif text-base italic text-[var(--ink)]/75">
+          Where five everyday public services break at the last step, across
+          eight Indian states.
         </p>
 
-        {/* Matrix — desktop: table. Mobile: scrolls horizontally (minimal layout shift). */}
-        <div className="mt-6 overflow-x-auto">
+        {/* Matrix — bleeds edge-to-edge on mobile for scroll without pushing page scroll */}
+        <div className="scroll-island -mx-4 mt-6 px-4 sm:mx-0 sm:px-0">
           <table className="w-full min-w-[560px] border-collapse font-mono text-sm">
             <thead>
               <tr className="border-y border-[var(--ink)]">
@@ -94,7 +95,7 @@ export function LastMileTracker() {
         </div>
 
         {/* Legend */}
-        <p className="mt-6 font-mono text-xs tracking-[0.04em] text-[var(--ink)]">
+        <p className="mt-6 font-mono text-[13px] tracking-[0.04em] text-[var(--ink)]">
           <span className="text-[var(--ink)]">●</span> ONLINE
           <span className="mx-3 opacity-40">·</span>
           <span className="text-[var(--ink)]">◐</span> PARTIAL
@@ -102,8 +103,8 @@ export function LastMileTracker() {
           <span className="text-[var(--ochre)]">○</span> OFFLINE
         </p>
 
-        <div className="mt-5">
-          <Link href="/research/last-mile-tracker" className="ds-link font-mono text-sm">
+        <div className="mt-6">
+          <Link href="/research/last-mile-tracker" className="ds-link inline-block py-1 font-mono text-[15px]">
             Explore the full tracker →
           </Link>
         </div>

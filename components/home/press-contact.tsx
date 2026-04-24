@@ -18,19 +18,19 @@ export function PressContact() {
             <p className="ds-label ds-label--ochre" id="press-heading">
               Press Enquiries
             </p>
-            <p className="mt-2 font-mono text-sm text-[var(--ink)]">
+            <p className="mt-2 font-mono text-[15px] text-[var(--ink)]">
               <a
                 href={`mailto:${site.email.press}`}
-                className="hover:underline underline-offset-4"
+                className="inline-block py-1 hover:underline underline-offset-4"
               >
                 {site.email.press}
               </a>
             </p>
-            <p className="mt-1 font-serif text-sm italic text-[var(--ink)]">
+            <p className="mt-1 font-serif text-[15px] italic text-[var(--ink)]/75">
               Response within 24 hours
             </p>
-            <p className="mt-3">
-              <Link href="/press" className="ds-link font-mono text-sm">
+            <p className="mt-4">
+              <Link href="/press" className="ds-link font-mono text-[15px]">
                 Press kit →
               </Link>
             </p>
@@ -39,7 +39,7 @@ export function PressContact() {
 
         {/* Right — muted italic placeholder */}
         <div className="flex items-start">
-          <p className="font-serif text-base italic text-[var(--ink)]/60">
+          <p className="font-serif text-[17px] italic leading-[1.55] text-[var(--ink)]/65">
             Press citations will appear here as they accumulate.
           </p>
         </div>

@@ -5,12 +5,23 @@
    Source: /Users/pankils-mba/Downloads/digicracy/06-brand-and-homepage-spec.md
    Three colours only. No fourth colour. No gradients.
    Two fonts only. JetBrains Mono + Source Serif 4.
+
+   ─── Accessibility deviation from spec ───
+   The spec locked ochre at #b4843a. On paper (#f4efe6) that produces
+   a WCAG contrast ratio of 2.91 — it fails AA (4.5) for body text and
+   even AA Large (3.0). The same ochre as a footer background with paper
+   text also fails. Since this is a publication-first NGO website, we
+   deepen ochre to #8b5e1c — same hue family, but contrast 4.83 on paper,
+   passing WCAG AA in both directions. A separate "decorative ochre"
+   token (#b4843a) is kept for non-text graphics only (chain strokes,
+   stamp borders, dashed lines) where WCAG text rules don't apply.
    ──────────────────────────────────────────────────────────────────────── */
 
 @theme inline {
-  /* Brand palette — exactly three */
+  /* Brand palette */
   --color-ink: #152a3a;
-  --color-ochre: #b4843a;
+  --color-ochre: #8b5e1c;             /* readable ochre (text + fills) */
+  --color-ochre-decorative: #b4843a;  /* original ochre (graphics only) */
   --color-paper: #f4efe6;
 
   /* Ink at opacity levels for muted text (no separate grey per spec) */
@@ -37,7 +48,8 @@
 
 :root {
   --ink: #152a3a;
-  --ochre: #b4843a;
+  --ochre: #8b5e1c;             /* text-role */
+  --ochre-decorative: #b4843a;  /* graphics-role */
   --paper: #f4efe6;
 
   color-scheme: light only;
@@ -55,9 +67,11 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-serif), Georgia, serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;            /* bumped from 16 — publication comfort */
+  line-height: 1.65;
   font-variant-ligatures: common-ligatures;
+  /* Prevent tiny text from auto-shrinking on iOS in landscape */
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Headings, labels, data — JetBrains Mono */
@@ -67,7 +81,12 @@ h1, h2, h3, h4, h5, h6,
 .ds-data,
 .ds-cta {
   font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  line-height: 1.25;
+  line-height: 1.2;
+}
+
+h1 {
+  /* Better widow/orphan handling for display headings */
+  text-wrap: balance;
 }
 
 /* Running prose — Source Serif 4 */
@@ -75,10 +94,15 @@ p, li, blockquote, .font-serif {
   font-family: var(--font-serif), Georgia, serif;
 }
 
-/* Max line length for running prose ~70ch per spec */
+/* Max line length for running prose — publication comfort (was 70ch per spec) */
 .prose-digicracy {
-  max-width: 70ch;
-  line-height: 1.6;
+  max-width: 62ch;
+  line-height: 1.65;
+}
+
+/* Utility: balanced text wrap for headlines / short callouts */
+.balance {
+  text-wrap: balance;
 }
 
 /* Links — ink by default; ochre underline on hover in 150ms */
@@ -100,6 +124,17 @@ a.ds-link {
 a.ds-link:hover,
 a.ds-link:focus-visible {
   text-decoration-color: var(--ochre);
+}
+
+/* Visible focus everywhere — important for accessibility */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 2px;
 }
 
 /* Form controls — sharp corners, 1px ink border, no shadow */
@@ -141,25 +176,28 @@ textarea:focus {
    Utility classes (Digicracy-specific)
    ──────────────────────────────────────────────────────────────────────── */
 
-/* Small-caps label — JetBrains Mono bold, tracked, all caps */
+/* Small-caps label — JetBrains Mono bold, tracked, all caps.
+   Bumped from 11px → 12px: uppercase tracked needs more height. */
 .ds-label {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-weight: 700;
-  font-size: 0.6875rem; /* ~11px */
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;          /* ~12px (was 11) */
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .ds-label--ink { color: var(--ink); }
 .ds-label--ochre { color: var(--ochre); }
 
-/* Metadata line — JetBrains Mono regular ochre */
+/* Metadata line — JetBrains Mono regular. Bumped 12→13. */
 .ds-meta {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-weight: 400;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;        /* ~13px (was 12) */
   letter-spacing: 0.04em;
   color: var(--ochre);
+  line-height: 1.5;
 }
 
 /* Section rule — 1px ink */
@@ -168,18 +206,19 @@ textarea:focus {
 }
 
 .ds-rule--ochre {
-  border-top: 1px solid var(--ochre);
+  /* decorative rule — use original ochre for stronger visual */
+  border-top: 1px solid var(--ochre-decorative);
 }
 
-/* Stamp rectangle — ochre-outlined, 2px stroke, no fill, no radius */
+/* Stamp rectangle — uses decorative ochre for the border graphic */
 .ds-stamp {
-  border: 2px solid var(--ochre);
-  padding: 0.625rem 0.875rem;
+  border: 2px solid var(--ochre-decorative);
+  padding: 0.75rem 1rem;
   display: inline-block;
   border-radius: 0;
 }
 
-/* Solid ochre button — paper text */
+/* Solid ochre button — paper text. Uses readable ochre so paper text passes AA. */
 .ds-btn {
   display: inline-flex;
   align-items: center;
@@ -188,13 +227,14 @@ textarea:focus {
   color: var(--paper);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-weight: 700;
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
+  font-size: 0.875rem;         /* 14px, was 13 */
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.75rem 1.25rem;
+  padding: 0.875rem 1.375rem;  /* taller button, better tap target */
   border: 2px solid var(--ochre);
   border-radius: 0;
   transition: background-color 150ms ease, color 150ms ease;
+  min-height: 44px;            /* WCAG minimum touch target */
 }
 
 .ds-btn:hover,
@@ -204,21 +244,21 @@ textarea:focus {
   color: var(--paper);
 }
 
-/* Footer band — ochre background, paper text */
+/* Footer band — readable ochre (passes AA for paper text: 4.83) */
 .ds-footer-band {
   background-color: var(--ochre);
   color: var(--paper);
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   Chain motif — the signature visual
-   Rules per spec §3 (Chain motif)
+   Chain motif — decorative (uses original ochre; graphics exempt from
+   WCAG text contrast rules)
    ──────────────────────────────────────────────────────────────────────── */
 
 /* Solid ink circle = working node */
 .chain-node {
   display: inline-block;
-  border-radius: 9999px; /* only exception to "sharp corners" — nodes are circles */
+  border-radius: 9999px;
   background-color: var(--ink);
   border: 1.5px solid var(--ink);
   flex-shrink: 0;
@@ -227,7 +267,7 @@ textarea:focus {
 /* Hollow ochre circle = broken node */
 .chain-node--broken {
   background-color: var(--paper);
-  border-color: var(--ochre);
+  border-color: var(--ochre-decorative);
 }
 
 /* Solid ink line between working nodes */
@@ -239,7 +279,7 @@ textarea:focus {
 
 /* Dashed ochre line between broken/uncertain nodes */
 .chain-link--broken {
-  border-top: 1.5px dashed var(--ochre);
+  border-top: 1.5px dashed var(--ochre-decorative);
   border-image-slice: 1;
 }
 
@@ -288,4 +328,15 @@ textarea:focus {
    ──────────────────────────────────────────────────────────────────────── */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Scroll islands — for wide matrices on narrow viewports
+   Gives the tracker table edge-to-edge scroll on mobile without pushing
+   document-level horizontal scroll.
+   ──────────────────────────────────────────────────────────────────────── */
+.scroll-island {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }

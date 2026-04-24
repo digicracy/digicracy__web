@@ -31,7 +31,7 @@ export function HowWeWork() {
           />
         </div>
 
-        <p className="mt-7 font-serif text-base italic text-[var(--ink)]">
+        <p className="mt-8 max-w-[56ch] font-serif text-[17px] italic leading-[1.55] text-[var(--ink)] sm:text-lg">
           Every investigation follows this chain. Some stop at publish. Some go
           to court.
         </p>

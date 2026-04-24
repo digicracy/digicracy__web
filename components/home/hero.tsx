@@ -16,27 +16,23 @@ export function Hero() {
         <div className="border-[var(--ink)] px-4 py-12 sm:px-6 lg:border-r lg:px-10 lg:py-16">
           <h1
             id="hero-heading"
-            className="font-mono text-3xl font-bold leading-[1.15] tracking-tight text-[var(--ink)] sm:text-4xl lg:text-[2.6rem]"
+            className="balance font-mono text-3xl font-bold leading-[1.1] tracking-tight text-[var(--ink)] sm:text-4xl lg:text-[2.6rem]"
           >
-            Some services
-            <br />
-            in India are digital.
-            <br />
-            Some aren&apos;t.
+            Some services in India are digital. Some aren&apos;t.
           </h1>
 
-          <p className="prose-digicracy mt-6 text-base leading-[1.6] text-[var(--ink)] sm:text-[17px]">
+          <p className="prose-digicracy mt-6 text-[17px] leading-[1.65] text-[var(--ink)] sm:text-lg">
             We research and publish the gaps in India&apos;s last-mile digital
             governance. Services that work online until the last step, where
             they break — tax online, penalty offline; portal exists, gateway
             broken; &ldquo;faceless&rdquo; service, biometrics still in person.
           </p>
 
-          <div className="mt-7 flex flex-col gap-2 font-mono text-sm sm:flex-row sm:gap-6">
-            <Link href="/research" className="ds-link">
+          <div className="mt-8 flex flex-col gap-3 font-mono text-[15px] sm:flex-row sm:gap-8">
+            <Link href="/research" className="ds-link inline-block py-1">
               Read the research →
             </Link>
-            <Link href="/about#how-we-work" className="ds-link">
+            <Link href="/about#how-we-work" className="ds-link inline-block py-1">
               How we work →
             </Link>
           </div>
